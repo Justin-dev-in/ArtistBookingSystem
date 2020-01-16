@@ -1,13 +1,23 @@
 package com.app.main.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-public class User {
+public class User implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userId;
@@ -19,6 +29,15 @@ public class User {
 	    private String userPassword;
 	    private String userDob;
 	    private String typeOfUser;
+	    
+	
+	  @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy = "userId")
+	  private Order1 orderId;
+	 
+	    
+		public User() {
+			super();
+		}
 		public int getUserId() {
 			return userId;
 		}

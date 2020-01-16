@@ -3,30 +3,21 @@ package com.app.main.service;
 
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.app.main.dao.IuserDao;
+
 import com.app.main.dto.User;
-
-;
-
 
 @Service
 public class UserServerImpl implements IuserService{
 
-/*List<User> userlist=new ArrayList<>(Arrays.asList(
-
-new User(1,"Shoaib","Bepari@123","12 lane laxmi road","Jaysingpur",416101,"9011065321","sbepari@gmail.com"),
-new User(2,"Shoaib","Bepari@123","12 lane laxmi road","Jaysingpur",416101,"9011065321","sbepari@gmail.com"),
-new User(2,"Shoaib","Bepari@123","12 lane laxmi road","Jaysingpur",416101,"9011065321","sbepari@gmail.com")
-
-));*/
-
 
 @Autowired
 private IuserDao udaoref;
+
 
 @Override
 public List<User> getAllUsers() {
@@ -64,17 +55,30 @@ udaoref.deleteById(uid);
 @Override
 public void updateUser(User user, int uid) {
 // TODO Auto-generated method stub
-/*for (int i = 0; i < userlist.size(); i++) {
-User u=userlist.get(i);
-if(u.getUid()==uid)
-{
-userlist.set(i, user);
-return;
-}
-}*/
+
 udaoref.save(user);
 
 }
+
+	
+	  @Override public List<User> validate(String email, String pwd)
+	  { 
+		  
+         List<User> users=udaoref.login(email, pwd); 
+         
+        
+         if(users.isEmpty()) {
+        	 return users; 
+         }
+         
+         else
+        	 return  users;
+       
+        	 
+         
+        	 
+         }
+	
 
 
 

@@ -45,6 +45,22 @@ public class ArtistServiceImpl implements IartistService{
 		adaoref.save(artist);
 	}
 	
-	
+	 @Override public List<Artist> validate(String email, String pwd)
+	  { 
+		  
+        List<Artist> artists=adaoref.login(email, pwd); 
+        
+       
+        if(artists.isEmpty()) {
+       	 return artists; 
+        }
+        
+        else
+       	 return  artists;
+      
+       	 
+        
+       	 
+        }
 
 }

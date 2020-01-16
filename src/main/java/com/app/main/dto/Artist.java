@@ -1,20 +1,32 @@
 package com.app.main.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Artist {
+public class Artist implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int artistId;
 	
 	@Column(unique=true)
 	private String artistEmailID;
+	private String artistName;
 	private long artistPhoneNumber;
 	private String artistGenre;
 	private String artistAvailDays;
@@ -25,6 +37,19 @@ public class Artist {
 	private String artistPassword;
 	private String artistDob;
 	private String prefWorkHours;
+	private String artistPicture;
+	
+	
+	
+	public Artist() {
+		
+	}
+	
+	  @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy =
+	  "artistId")
+	  private Order1 orderId;
+	 
+	
 	public int getArtistId() {
 		return artistId;
 	}
@@ -91,6 +116,32 @@ public class Artist {
 	public void setPrefWorkHours(String prefWorkHours) {
 		this.prefWorkHours = prefWorkHours;
 	}
+	
+	public String getArtistPassword() {
+		return artistPassword;
+	}
+	public void setArtistPassword(String artistPassword) {
+		this.artistPassword = artistPassword;
+	}
+	
+	public String getArtistName() {
+		return artistName;
+	}
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+	public String getArtistPicture() {
+		return artistPicture;
+	}
+	public void setArtistPicture(String artistPicture) {
+		this.artistPicture = artistPicture;
+	}
+
+	
+	  public Order1 getOrderId() { return orderId; }
+	  public void setOrderId(Order1
+	  orderId) { this.orderId = orderId; }
+	 
 	@Override
 	public String toString() {
 		return "Artist [artistId=" + artistId + ", artistEmailID=" + artistEmailID + ", artistPhoneNumber="

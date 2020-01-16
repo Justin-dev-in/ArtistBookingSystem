@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.main.dto.Artist;
+
 import com.app.main.service.IartistService;
 
 @RestController
@@ -60,5 +61,12 @@ public void deleteUser(@PathVariable int aid)
 
 
 
+@RequestMapping(value="/Alogin/{email}/{pwd}",method = RequestMethod.POST)
+public List<Artist> login(@PathVariable String email,@PathVariable String pwd )
+{ 
+  return  artistserviceRef.validate(email,pwd);
+
+   
+}
 
 }
