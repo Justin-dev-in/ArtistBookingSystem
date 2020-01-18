@@ -9,10 +9,10 @@ import com.app.main.dto.User;
 public interface IuserService {
 
 List<User> getAllUsers();
-User getUserById(int uid);
+User getUserById(String email);
 void addUser(User user);
-void deleteUser(int uid);
-void updateUser(User user, int uid);
+void deleteUser(String email);
+void updateUser(User user, String email);
 	
 
 	List<User> validate(String email,String pwd); 

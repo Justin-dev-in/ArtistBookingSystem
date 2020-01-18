@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -21,11 +23,8 @@ public class Artist implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int artistId;
-	
-	@Column(unique=true)
 	private String artistEmailID;
+
 	private String artistName;
 	private long artistPhoneNumber;
 	private String artistGenre;
@@ -41,20 +40,40 @@ public class Artist implements Serializable{
 	
 	
 	
+	public Artist(String artistEmailID, String artistName, long artistPhoneNumber, String artistGenre,
+			String artistAvailDays, float artistfees, String artistCertification, String artistExperience,
+			String artistAddress, String artistPassword, String artistDob, String prefWorkHours, String artistPicture) {
+		super();
+		this.artistEmailID = artistEmailID;
+		this.artistName = artistName;
+		this.artistPhoneNumber = artistPhoneNumber;
+		this.artistGenre = artistGenre;
+		this.artistAvailDays = artistAvailDays;
+		this.artistfees = artistfees;
+		this.artistCertification = artistCertification;
+		this.artistExperience = artistExperience;
+		this.artistAddress = artistAddress;
+		this.artistPassword = artistPassword;
+		this.artistDob = artistDob;
+		this.prefWorkHours = prefWorkHours;
+		this.artistPicture = artistPicture;
+	}
+
 	public Artist() {
+		super();
 		
 	}
 	
-	  @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy =
-	  "artistId")
-	  private Order1 orderId;
+	/*
+	 * @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy
+	 * ="artistEmail") private Order1 order;
+	 */
 	 
 	
-	public int getArtistId() {
-		return artistId;
-	}
-	public void setArtistId(int artistId) {
-		this.artistId = artistId;
+	
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public String getArtistEmailID() {
 		return artistEmailID;
@@ -137,21 +156,22 @@ public class Artist implements Serializable{
 		this.artistPicture = artistPicture;
 	}
 
-	
-	  public Order1 getOrderId() { return orderId; }
-	  public void setOrderId(Order1
-	  orderId) { this.orderId = orderId; }
-	 
 	@Override
 	public String toString() {
-		return "Artist [artistId=" + artistId + ", artistEmailID=" + artistEmailID + ", artistPhoneNumber="
+		return "Artist [artistEmailID=" + artistEmailID + ", artistName=" + artistName + ", artistPhoneNumber="
 				+ artistPhoneNumber + ", artistGenre=" + artistGenre + ", artistAvailDays=" + artistAvailDays
 				+ ", artistfees=" + artistfees + ", artistCertification=" + artistCertification + ", artistExperience="
-				+ artistExperience + ", artistAddress=" + artistAddress + ", artistDob=" + artistDob
-				+ ", prefWorkHours=" + prefWorkHours + "]";
+				+ artistExperience + ", artistAddress=" + artistAddress + ", artistPassword=" + artistPassword
+				+ ", artistDob=" + artistDob + ", prefWorkHours=" + prefWorkHours + ", artistPicture=" + artistPicture
+				+ "]";
 	}
+
+	}
+
+	
+	
 	
 	
 	
 
-}
+

@@ -5,7 +5,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.main.dto.User;
 
 import com.app.main.service.IuserService;
-//Crossorigin("*")
 
 
+
+@CrossOrigin("*")
 @RestController
 public class UserController {
 
@@ -46,9 +47,9 @@ return userseriveRef.getAllUsers();
 }
 
 
-@RequestMapping("/userslist/{uid}")
-public User getUserById(@PathVariable int uid) {
-return userseriveRef.getUserById(uid);
+@RequestMapping("/userslist/{email}")
+public User getUserById(@PathVariable String email) {
+return userseriveRef.getUserById(email);
 }
 
 
@@ -58,16 +59,16 @@ public void addUser(@RequestBody User user)
 userseriveRef.addUser(user);
 }
 
-@RequestMapping(method = RequestMethod.PUT,value = "/userslist/{uid}")
-public void updateUser(@RequestBody User user,@PathVariable int uid)
+@RequestMapping(method = RequestMethod.PUT,value = "/userslist/{email}")
+public void updateUser(@RequestBody User user,@PathVariable String email)
 {
-userseriveRef.updateUser(user,uid);
+userseriveRef.updateUser(user,email);
 }
 
-@RequestMapping(method = RequestMethod.DELETE,value = "/userslist/{uid}")
-public void deleteUser(@PathVariable int uid)
+@RequestMapping(method = RequestMethod.DELETE,value = "/userslist/{email}")
+public void deleteUser(@PathVariable String email)
 {
-userseriveRef.deleteUser(uid);
+userseriveRef.deleteUser(email);
 }
 	
 	

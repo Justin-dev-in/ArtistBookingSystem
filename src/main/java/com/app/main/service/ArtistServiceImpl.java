@@ -21,9 +21,9 @@ public class ArtistServiceImpl implements IartistService{
 	}
 
 	@Override
-	public Artist getArtistById(int aid) {
+	public Artist getArtistById(String email) {
 		// TODO Auto-generated method stub
-		return adaoref.getOne(aid);
+		return adaoref.getOne(email);
 	}
 
 	@Override
@@ -33,15 +33,14 @@ public class ArtistServiceImpl implements IartistService{
 	}
 
 	@Override
-	public void deleteArtist(int aid) {
+	public void deleteArtist(String email) {
 		// TODO Auto-generated method stub
-		adaoref.deleteById(aid);
+		adaoref.deleteById(email);
 		
 	}
 
 	@Override
-	public void updateArtist(Artist artist, int aid) {
-		// TODO Auto-generated method stub
+	public void updateArtist(Artist artist, String email) {
 		adaoref.save(artist);
 	}
 	
@@ -49,7 +48,7 @@ public class ArtistServiceImpl implements IartistService{
 	  { 
 		  
         List<Artist> artists=adaoref.login(email, pwd); 
-        
+        System.out.println(artists);
        
         if(artists.isEmpty()) {
        	 return artists; 

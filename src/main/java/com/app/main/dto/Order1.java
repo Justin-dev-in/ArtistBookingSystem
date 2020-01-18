@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -29,17 +31,28 @@ public class Order1 implements Serializable {
 	private String venue;
 
 	
-	  @OneToOne 
-	  @JoinColumn(name="userId") 
-	  private User userId;
+	  @ManyToOne  
+	  private User user;
 	 
 
 	
-	  @OneToOne
-	  @JoinColumn(name="artistId") 
-	  private Artist artistId;
+	  @ManyToOne 
+	  private Artist artist;
 	  
 	 
+
+	public Order1(int orderId, String orderDate, long orderPrice, String bookedDate, String bookedTime, String venue,
+			String userEmail, String artistEmail) {
+		super();
+		this.orderId = orderId;
+		this.orderDate = orderDate;
+		this.orderPrice = orderPrice;
+		this.bookedDate = bookedDate;
+		this.bookedTime = bookedTime;
+		this.venue = venue;
+		this.user = new User(userEmail,"",(Long)null,"","","","");
+		this.artist = new Artist(artistEmail,"",(Long)null,"","",(Float)null,"","","","","","","");
+	}
 
 	public Order1() {
 		super();
@@ -93,9 +106,34 @@ public class Order1 implements Serializable {
 		this.venue = venue;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Order1 [orderId=" + orderId + ", orderDate=" + orderDate + ", orderPrice=" + orderPrice
+				+ ", bookedDate=" + bookedDate + ", bookedTime=" + bookedTime + ", venue=" + venue + ", user=" + user
+				+ ", artist=" + artist + "]";
+	}
+
 	
-	  public User getUserId() { return userId; }
-	  
-	  public void setUserId(User userId) { this.userId = userId; }
-	 
+	
+
 }

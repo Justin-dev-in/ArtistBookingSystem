@@ -8,9 +8,9 @@ import com.app.main.dto.Artist;
 
 public interface IartistService {
 	List<Artist> getAllArtists();
-	Artist getArtistById(int aid);
+	Artist getArtistById(String email);
 	void addArtist(Artist artist);
-	void deleteArtist(int aid);
-	void updateArtist(Artist artist, int aid);
+	void deleteArtist(String email);
+	void updateArtist(Artist artist, String email);
 	List<Artist> validate(String email,String pwd); 
 }

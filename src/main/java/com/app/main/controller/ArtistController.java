@@ -3,16 +3,17 @@ package com.app.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.main.dto.Artist;
-
 import com.app.main.service.IartistService;
-
+@CrossOrigin("*")
 @RestController
 public class ArtistController {
 
@@ -35,9 +36,9 @@ return  artistserviceRef.getAllArtists();
 }
 
 
-@RequestMapping("/artistslist/{aid}")
-public Artist getArtistById(@PathVariable int aid) {
-return  artistserviceRef.getArtistById(aid);
+@RequestMapping("/artistslist/{email}")
+public Artist getArtistById(@PathVariable String email) {
+return  artistserviceRef.getArtistById(email);
 }
 
 
@@ -47,24 +48,25 @@ public void addArtist(@RequestBody Artist artist)
 	 artistserviceRef.addArtist(artist);
 }
 
-@RequestMapping(method = RequestMethod.PUT,value = "/artistslist/{aid}")
-public void updateArtist(@RequestBody Artist artist,@PathVariable int aid)
+@RequestMapping(method = RequestMethod.PUT,value = "/artistslist/{email}")
+public void updateArtist(@RequestBody Artist artist,@PathVariable String email)
 {
-	 artistserviceRef.updateArtist(artist,aid);
+	artistserviceRef.updateArtist(artist,email);
 }
 
-@RequestMapping(method = RequestMethod.DELETE,value = "/artistslist/{aid}")
-public void deleteUser(@PathVariable int aid)
+@RequestMapping(method = RequestMethod.DELETE,value = "/artistslist/{email}")
+public void deleteArtist(@PathVariable String email)
 {
-	 artistserviceRef.deleteArtist(aid);
+	 artistserviceRef.deleteArtist(email);
 }
 
 
 
-@RequestMapping(value="/Alogin/{email}/{pwd}",method = RequestMethod.POST)
-public List<Artist> login(@PathVariable String email,@PathVariable String pwd )
+
+@RequestMapping(value="/Alogin/",method = RequestMethod.GET)
+public List<Artist> login(@RequestParam String artistEmailID, @RequestParam String artistPassword )
 { 
-  return  artistserviceRef.validate(email,pwd);
+  return  artistserviceRef.validate(artistEmailID,artistPassword);
 
    
 }

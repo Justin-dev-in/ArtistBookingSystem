@@ -13,7 +13,7 @@ import com.app.main.dto.Artist;
 
 
 @Repository("artistdao")
-public interface IartistDao extends JpaRepository<Artist, Integer>{
+public interface IartistDao extends JpaRepository<Artist, String>{
 
 	@Query("select a from Artist a where artistEmailID=?1 and artistPassword =?2")
 	List<Artist> login(String email, String pwd);

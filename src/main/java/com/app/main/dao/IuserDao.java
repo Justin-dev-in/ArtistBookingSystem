@@ -11,7 +11,7 @@ import com.app.main.dto.User;
 
 @Repository("userdao")
 
-public interface IuserDao extends JpaRepository<User, Integer>{
+public interface IuserDao extends JpaRepository<User, String>{
 
 	@Query("select u from User u where userEmail=?1 and artistPassword =?2")
 	List<User> login(String email, String pwd);

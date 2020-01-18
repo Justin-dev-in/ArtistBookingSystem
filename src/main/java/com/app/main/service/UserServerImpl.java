@@ -21,16 +21,15 @@ private IuserDao udaoref;
 
 @Override
 public List<User> getAllUsers() {
-// TODO Auto-generated method stub
-//return userlist;
+
 return udaoref.findAll();
 }
 
 @Override
-public User getUserById(int uid) {
+public User getUserById(String email) {
 
 //return userlist.stream().filter(u ->u.getUid()==uid).findFirst().get();
-return udaoref.getOne(uid);
+return udaoref.getOne(email);
 }
 
 @Override
@@ -44,16 +43,15 @@ udaoref.save(user);
 
 
 @Override
-public void deleteUser(int uid) {
-// TODO Auto-generated method stub
-//userlist.removeIf(u->u.getUid()==uid);
+public void deleteUser(String email) {
 
-udaoref.deleteById(uid);
+
+udaoref.deleteById(email);
 }
 
 
 @Override
-public void updateUser(User user, int uid) {
+public void updateUser(User user, String email) {
 // TODO Auto-generated method stub
 
 udaoref.save(user);
