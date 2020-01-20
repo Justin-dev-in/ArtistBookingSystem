@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.main.dto.Artist;
 import com.app.main.service.IartistService;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
 @CrossOrigin("*")
 @RestController
 public class ArtistController {
@@ -63,9 +67,12 @@ public void deleteArtist(@PathVariable String email)
 
 
 
-@RequestMapping(value="/Alogin/",method = RequestMethod.GET)
-public List<Artist> login(@RequestParam String artistEmailID, @RequestParam String artistPassword )
+@RequestMapping(value="/Alogin",method = RequestMethod.POST)
+public String login(@RequestBody JSONObject artist)
 { 
+	JSONObject json=(JSONObject)JSONSerializer.toJSON(artist);
+	String artistEmailID=json.getString("artistEmail");
+	String artistPassword=json.getString("artistPassword");
   return  artistserviceRef.validate(artistEmailID,artistPassword);
 
    

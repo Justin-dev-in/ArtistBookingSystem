@@ -12,5 +12,5 @@ public interface IartistService {
 	void addArtist(Artist artist);
 	void deleteArtist(String email);
 	void updateArtist(Artist artist, String email);
-	List<Artist> validate(String email,String pwd); 
+	String validate(String email,String pwd); 
 }
