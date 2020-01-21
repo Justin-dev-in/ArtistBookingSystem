@@ -19,6 +19,9 @@ import com.app.main.dto.User;
 
 import com.app.main.service.IuserService;
 
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+
 
 
 @CrossOrigin("*")
@@ -72,14 +75,24 @@ userseriveRef.deleteUser(email);
 }
 	
 	
-	  @RequestMapping(value="/login/{email}/{pwd}",method = RequestMethod.POST)
-	  public List<User> login(@PathVariable String email,@PathVariable String pwd )
-	  { 
-	    return  userseriveRef.validate(email,pwd);
-	 
-	     
-	  }
-	 
+	/*
+	 * @RequestMapping(value="/login/{email}/{pwd}",method = RequestMethod.POST)
+	 * public List<User> login(@PathVariable String email,@PathVariable String pwd )
+	 * { return userseriveRef.validate(email,pwd);
+	 * 
+	 * 
+	 * }
+	 */
+@RequestMapping(value="/Ulogin",method = RequestMethod.POST)
+public String login(@RequestBody JSONObject user)
+{ 
+	JSONObject json=(JSONObject)JSONSerializer.toJSON(user);
+	String userEmailID=json.getString("userEmail");
+	String userPassword=json.getString("userPassword");
+  return  userseriveRef.validate(userEmailID,userPassword);
+
+   
+}
 	 
 	 
 	 

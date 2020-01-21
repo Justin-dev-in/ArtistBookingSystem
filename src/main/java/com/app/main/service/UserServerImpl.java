@@ -59,18 +59,18 @@ udaoref.save(user);
 }
 
 	
-	  @Override public List<User> validate(String email, String pwd)
+	  @Override public String validate(String email, String pwd)
 	  { 
 		  
          List<User> users=udaoref.login(email, pwd); 
          
         
          if(users.isEmpty()) {
-        	 return users; 
+        	 return "login failed"; 
          }
          
          else
-        	 return  users;
+        	 return  email;
        
         	 
          

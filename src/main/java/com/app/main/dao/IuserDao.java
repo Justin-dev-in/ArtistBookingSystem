@@ -13,7 +13,7 @@ import com.app.main.dto.User;
 
 public interface IuserDao extends JpaRepository<User, String>{
 
-	@Query("select u from User u where userEmail=?1 and artistPassword =?2")
+	@Query("select u from User u where userEmail=?1 and userPassword =?2")
 	List<User> login(String email, String pwd);
 	 
 	 

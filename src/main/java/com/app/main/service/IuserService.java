@@ -15,7 +15,7 @@ void deleteUser(String email);
 void updateUser(User user, String email);
 	
 
-	List<User> validate(String email,String pwd); 
+	String validate(String email,String pwd); 
 
 }
 
