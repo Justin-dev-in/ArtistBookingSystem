@@ -1,5 +1,6 @@
 package com.app.main.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,21 @@ public class ArtistServiceImpl implements IartistService{
         
        	 
         }
+
+	@Override
+	public List<Object> getRelevantArtist(Date date, int fees,String genre) {
+		// TODO Auto-generated method stub
+		
+		List<Object> relartists=adaoref.checkSearch(date, fees,genre);
+	 
+		System.out.println(relartists);
+		
+		if(relartists.isEmpty()) {
+			return relartists;
+		}
+		
+		else
+			return relartists;
+	}
 
 }

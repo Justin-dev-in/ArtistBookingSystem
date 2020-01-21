@@ -1,5 +1,6 @@
 package com.app.main.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.app.main.dto.Artist;
@@ -12,5 +13,6 @@ public interface IartistService {
 	void addArtist(Artist artist);
 	void deleteArtist(String email);
 	void updateArtist(Artist artist, String email);
-	String validate(String email,String pwd); 
+	String validate(String email,String pwd);
+	List<Object> getRelevantArtist(Date date, int fees,String genre);
 }

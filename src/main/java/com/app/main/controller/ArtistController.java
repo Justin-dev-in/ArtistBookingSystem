@@ -1,6 +1,9 @@
 package com.app.main.controller;
 
+import java.util.Date;
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.main.dto.Artist;
 import com.app.main.service.IartistService;
+import com.sun.tools.classfile.StackMapTable_attribute.same_frame;
 
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
@@ -78,4 +82,22 @@ public String login(@RequestBody JSONObject artist)
    
 }
 
+
+@RequestMapping(value="/searchArtistsBydate",method=RequestMethod.POST)
+public List<Object> getRelArtists(@RequestBody JSONObject dateobject ) throws ParseException
+{
+	JSONObject json=(JSONObject)JSONSerializer.toJSON(dateobject);
+	String date1=json.getString("date");
+	String fees1=json.getString("fees");
+    String genre=json.getString("genre");
+	int fees=Integer.parseInt(fees1);
+	
+	
+	  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+	  Date date = formatter.parse(date1);
+	  System.out.println(date);
+	  System.out.println(date1);
+	  System.out.println(fees);
+  return  artistserviceRef.getRelevantArtist(date, fees,genre);
+}
 }

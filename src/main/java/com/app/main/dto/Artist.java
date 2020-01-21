@@ -28,8 +28,8 @@ public class Artist implements Serializable{
 	private String artistName;
 	private long artistPhoneNumber;
 	private String artistGenre;
-	private String artistAvailDays;
-	private float artistfees;
+//	private String artistAvailDays;
+//	private float artistfees;
 	private String artistCertification;
 	private String artistExperience;
 	private String artistAddress;
@@ -48,9 +48,7 @@ public class Artist implements Serializable{
 		this.artistName = artistName;
 		this.artistPhoneNumber = artistPhoneNumber;
 		this.artistGenre = artistGenre;
-		this.artistAvailDays = artistAvailDays;
-		this.artistfees = artistfees;
-		this.artistCertification = artistCertification;
+			this.artistCertification = artistCertification;
 		this.artistExperience = artistExperience;
 		this.artistAddress = artistAddress;
 		this.artistPassword = artistPassword;
@@ -93,18 +91,8 @@ public class Artist implements Serializable{
 	public void setArtistGenre(String artistGenre) {
 		this.artistGenre = artistGenre;
 	}
-	public String getArtistAvailDays() {
-		return artistAvailDays;
-	}
-	public void setArtistAvailDays(String artistAvailDays) {
-		this.artistAvailDays = artistAvailDays;
-	}
-	public float getArtistfees() {
-		return artistfees;
-	}
-	public void setArtistfees(float artistfees) {
-		this.artistfees = artistfees;
-	}
+	
+	
 	public String getArtistCertification() {
 		return artistCertification;
 	}
@@ -159,8 +147,8 @@ public class Artist implements Serializable{
 	@Override
 	public String toString() {
 		return "Artist [artistEmailID=" + artistEmailID + ", artistName=" + artistName + ", artistPhoneNumber="
-				+ artistPhoneNumber + ", artistGenre=" + artistGenre + ", artistAvailDays=" + artistAvailDays
-				+ ", artistfees=" + artistfees + ", artistCertification=" + artistCertification + ", artistExperience="
+				+ artistPhoneNumber + ", artistGenre=" + artistGenre + 
+				 " artistCertification=" + artistCertification + ", artistExperience="
 				+ artistExperience + ", artistAddress=" + artistAddress + ", artistPassword=" + artistPassword
 				+ ", artistDob=" + artistDob + ", prefWorkHours=" + prefWorkHours + ", artistPicture=" + artistPicture
 				+ "]";
