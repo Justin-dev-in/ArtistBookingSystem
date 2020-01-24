@@ -21,9 +21,12 @@ public interface IartistDao extends JpaRepository<Artist, String>{
 	List<Artist> login(String email, String pwd);
 
 	
-	@Query("select distinct(b) from Artist a ,AdateAvail b where ?1 between  from_date and to_Date and artistfees <=?2 and artist_genre=?3")
-	List<AdateAvail> checkSearch(Date date,int fees,String genre);
+	@Query("select distinct(b) from Artist a ,AdateAvail b where artist_emailid=artist_artist_emailid and ?1 between  from_date and to_Date and artistfees <=?2 and artist_genre=?3 and artist_address=?4")
+	List<AdateAvail> checkSearch(Date date,int fees,String genre,String city);
 	
+	@Query("select a from Artist a where artist_genre=?1")
+	List<Artist> artistByCat(String cat);
+
 	
 }
 

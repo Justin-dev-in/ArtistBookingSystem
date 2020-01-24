@@ -93,12 +93,13 @@ public String login(@RequestBody JSONObject artist)
 
 
 @RequestMapping(value="/searchArtistsBydate",method=RequestMethod.POST)
-public List<AdateAvail> getRelArtists(@RequestParam JSONObject dateobject ) throws ParseException
+public List<AdateAvail> getRelArtists(@RequestBody JSONObject dateobject ) throws ParseException
 {
 	JSONObject json=(JSONObject)JSONSerializer.toJSON(dateobject);
 	String date1=json.getString("date");
 	String fees1=json.getString("fees");
     String genre=json.getString("genre");
+    String city=json.getString("city");
 	int fees=Integer.parseInt(fees1);
 	
 	
@@ -107,6 +108,12 @@ public List<AdateAvail> getRelArtists(@RequestParam JSONObject dateobject ) thro
 	  System.out.println(date);
 	  System.out.println(date1);
 	  System.out.println(fees);
-  return  artistserviceRef.getRelevantArtist(date, fees,genre);
+  return  artistserviceRef.getRelevantArtist(date, fees,genre,city);
+}
+
+@RequestMapping("/artistscategory/{cat}")
+public List<Artist> getArtistBycategory(@PathVariable String cat) {
+
+	return artistserviceRef.getArtistBycat(cat);
 }
 }

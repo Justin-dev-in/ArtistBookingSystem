@@ -15,6 +15,7 @@ public interface IartistService {
 	void deleteArtist(String email);
 	void updateArtist(Artist artist, String email);
 	String validate(String email,String pwd);
-	List<AdateAvail> getRelevantArtist(Date date, int fees,String genre);
+	List<AdateAvail> getRelevantArtist(Date date, int fees,String genre,String city);
+	List<Artist> getArtistBycat(String cat);
 	
 }

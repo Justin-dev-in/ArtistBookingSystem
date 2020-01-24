@@ -29,9 +29,9 @@ public class OrderServiceImpl implements IorderService{
 	}
 
 	@Override
-	public void addOrders(Order1 order) {
+	public void addOrders(String booked_date,String booked_time, int order_price,String venue,String artist_emailid, String user_email) {
 		// TODO Auto-generated method stub
-		odaoref.save(order);
+		odaoref.addOrder(booked_date, booked_time, order_price, venue, artist_emailid, user_email);
 	}
 
 	@Override
@@ -45,6 +45,12 @@ public class OrderServiceImpl implements IorderService{
 		// TODO Auto-generated method stub
 		odaoref.save(order);
 		
+	}
+
+	@Override
+	public List<Order1> getOrderbyAemail(String email) {
+		// TODO Auto-generated method stub
+		return odaoref.getOrderbyAemail(email);
 	}
 
 	

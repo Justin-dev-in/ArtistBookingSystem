@@ -64,10 +64,10 @@ public class ArtistServiceImpl implements IartistService{
         }
 
 	@Override
-	public List<AdateAvail> getRelevantArtist(Date date, int fees,String genre) {
+	public List<AdateAvail> getRelevantArtist(Date date, int fees,String genre,String city) {
 		// TODO Auto-generated method stub
 		
-		List<AdateAvail> relartists=adaoref.checkSearch(date, fees,genre);
+		List<AdateAvail> relartists=adaoref.checkSearch(date, fees,genre,city);
 	 
 		System.out.println(relartists);
 		
@@ -78,6 +78,15 @@ public class ArtistServiceImpl implements IartistService{
 		else
 			return relartists;
 	}
+
+	@Override
+	public List<Artist> getArtistBycat(String cat) {
+		
+		List<Artist> artistcat=adaoref.artistByCat(cat);
+		return artistcat;
+	}
+
+	
 
 	
 
